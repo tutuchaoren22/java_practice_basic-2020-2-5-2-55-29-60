@@ -104,6 +104,26 @@ public class App {
     return SelectedItemsTotal;
   }
 
+  /**
+   * 第一种优惠
+   */
+  public static int hasDiscountOne(int totalPrice,int totalPriceSummary) {
+    if(totalPrice >= 30){
+      totalPriceSummary -= 6;
+    }
+    return totalPriceSummary;
+  }
+
+  public static ArrayList hasDiscountOneSummary(int totalPrice,String discountInfo,int hasDiscount) {
+    if(totalPrice >= 30){
+      discountInfo = "满30减6元，省6元\n";
+      hasDiscount = 1;
+    }
+    ArrayList discountOneSummary = new ArrayList();
+    discountOneSummary.add(hasDiscount);
+    discountOneSummary.add(discountInfo);
+    return discountOneSummary;
+  }
 
 
 
