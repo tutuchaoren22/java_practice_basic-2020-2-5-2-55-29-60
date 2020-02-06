@@ -80,4 +80,32 @@ public class App {
     selectedItemsArr.add(selectedItemsNum);
     return selectedItemsArr;
   }
+  /**
+   *  打印购买菜品的信息
+   */
+  public static ArrayList printSelectedItems(String[] selectedItemsId, int[] selectedItemsNum) {
+    String[] itemIds = getItemIds();
+    String[] itemNames = getItemNames();
+    double[] itemPrices = getItemPrices();
+
+    String summary = "============= 订餐明细 =============\n";
+    int totalPrice = 0;
+    for(int i=0;i<selectedItemsId.length;i++){
+      int itemTotalPrice = 0;
+      int indexOfItem = Arrays.binarySearch(itemIds,selectedItemsId[i]);
+      itemTotalPrice += Integer.valueOf(selectedItemsNum[i])*itemPrices[indexOfItem];
+      totalPrice += itemTotalPrice;
+      summary += (itemNames[indexOfItem]+" x "+selectedItemsNum[i]+" = "+itemTotalPrice+"元\n");
+    }
+
+    ArrayList SelectedItemsTotal = new ArrayList();
+    SelectedItemsTotal.add(totalPrice);
+    SelectedItemsTotal.add(summary);
+    return SelectedItemsTotal;
+  }
+
+
+
+
+
 }
