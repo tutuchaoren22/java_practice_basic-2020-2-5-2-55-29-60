@@ -63,4 +63,21 @@ public class App {
   public static String[] getHalfPriceIds() {
     return new String[]{"ITEM0001", "ITEM0022"};
   }
+
+  /**
+   * 获取购买菜品的信息
+   */
+  public static ArrayList getSelectedItems(String selectedItems) {
+    String[] selectedItemsSplit = selectedItems.split(",");
+    String[] selectedItemsId =new String[selectedItemsSplit.length];
+    int[] selectedItemsNum =new int[selectedItemsSplit.length];
+    for(int i =0;i<selectedItemsSplit.length;i++){
+      selectedItemsId[i] = selectedItemsSplit[i].split(" x ")[0] ;
+      selectedItemsNum[i] = Integer.parseInt(selectedItemsSplit[i].split(" x ")[1]);
+    }
+    ArrayList selectedItemsArr = new ArrayList();
+    selectedItemsArr.add(selectedItemsId);
+    selectedItemsArr.add(selectedItemsNum);
+    return selectedItemsArr;
+  }
 }
