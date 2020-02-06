@@ -124,6 +124,42 @@ public class App {
     discountOneSummary.add(discountInfo);
     return discountOneSummary;
   }
+  /**
+   * 第二种优惠
+   */
+  public static int hasDiscountTwo(int totalPriceSummary,String[] selectedItemsId,int[]selectedItemsNum) {
+    String[] itemIds = getItemIds();
+    double[] itemPrices = getItemPrices();
+    String[] halfPriceIds = getHalfPriceIds();
+
+    for (int i=0;i<selectedItemsId.length;i++){
+      if (Arrays.asList(halfPriceIds).contains(selectedItemsId[i])){
+        int indexOfItem = Arrays.binarySearch(itemIds,selectedItemsId[i]);
+        totalPriceSummary -= 0.5*itemPrices[indexOfItem]*(Integer.valueOf(selectedItemsNum[i]));
+      }
+    }
+    return totalPriceSummary;
+  }
+
+  public static ArrayList hasDiscountTwoSummary(int totalPrice, int totalPriceSummary, String[] selectedItemsId, String discountInfo, int hasDiscount) {
+    String[] itemIds = getItemIds();
+    String[] itemNames = getItemNames();
+    String[] halfPriceIds = getHalfPriceIds();
+    String halfItemName = "";
+
+    for (int i=0;i<selectedItemsId.length;i++){
+      if (Arrays.asList(halfPriceIds).contains(selectedItemsId[i])){
+        int indexOfItem = Arrays.binarySearch(itemIds,selectedItemsId[i]);
+        halfItemName += itemNames[indexOfItem]+"，";
+      }
+    }
+    discountInfo = "指定菜品半价("+halfItemName.substring(0,halfItemName.length() - 1)+")，省"+(totalPrice-totalPriceSummary)+"元\n";
+    hasDiscount = 1;
+    ArrayList discountTwoSummary = new ArrayList();
+    discountTwoSummary.add(hasDiscount);
+    discountTwoSummary.add(discountInfo);
+    return discountTwoSummary;
+  }
 
 
 
