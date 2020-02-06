@@ -160,6 +160,25 @@ public class App {
     discountTwoSummary.add(discountInfo);
     return discountTwoSummary;
   }
+  /**
+   * 选择使用哪种优惠
+   */
+  public static ArrayList choseDiscount(int totalPrice,String[] selectedItemsId,int[] selectedItemsNum) {
+    int hasDiscount = 0;
+    int totalPriceSummary = totalPrice;
+    String discountInfo = "";
+    int discountOneTotal =  hasDiscountOne(totalPrice,totalPriceSummary);
+    int discountTwoTotal =  hasDiscountTwo(totalPriceSummary, selectedItemsId,selectedItemsNum);
+    if(discountOneTotal<=discountTwoTotal){
+      ArrayList discountOneSummary = hasDiscountOneSummary(totalPrice,discountInfo,hasDiscount);
+      discountOneSummary.add(discountOneTotal);
+      return discountOneSummary;
+    }else{
+      ArrayList discountTwoSummary = hasDiscountTwoSummary(totalPrice,discountTwoTotal, selectedItemsId,discountInfo,hasDiscount);
+      discountTwoSummary.add(discountTwoTotal);
+      return  discountTwoSummary;
+    }
+  }
 
 
 
