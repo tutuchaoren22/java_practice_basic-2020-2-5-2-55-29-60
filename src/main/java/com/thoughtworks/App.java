@@ -180,7 +180,17 @@ public class App {
     }
   }
 
-
-
-
+  /**
+   * 打印最终的统计信息
+   */
+  public static String printSummary(int hasDiscount,String discountInfo,int totalPriceSummary,String summary){
+    if(hasDiscount == 1){
+      summary += ("-----------------------------------\n"
+              + "使用优惠:\n"
+              + discountInfo);
+    }
+    summary += ("-----------------------------------\n"+"总计："
+            + totalPriceSummary+"元\n"+"===================================");
+    return summary;
+  }
 }
