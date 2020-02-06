@@ -19,7 +19,21 @@ public class App {
    */
   public static String bestCharge(String selectedItems) {
     // 此处补全代码
-    return selectedItems;
+    ArrayList selectedItemsArr = getSelectedItems(selectedItems);
+    String[] selectedItemsId=(String[])selectedItemsArr.get(0);
+    int[] selectedItemsNum=(int[])selectedItemsArr.get(1);
+
+    ArrayList SelectedItemsTotal = printSelectedItems(selectedItemsId,selectedItemsNum);
+    int totalPrice = (int) SelectedItemsTotal.get(0);
+    String summary = (String)SelectedItemsTotal.get(1);
+
+    ArrayList printDiscountInfo=choseDiscount( totalPrice,selectedItemsId,selectedItemsNum);
+    int hasDiscount= (int)printDiscountInfo.get(0);
+    String discountInfo=(String)printDiscountInfo.get(1);
+    int totalPriceSummary=(int)printDiscountInfo.get(2);
+
+    summary = printSummary(hasDiscount,discountInfo,totalPriceSummary,summary);
+    return summary;
   }
 
   /**
